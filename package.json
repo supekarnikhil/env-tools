@@ -1,22 +1,27 @@
 {
-  "name": "type-lint-test-template",
+  "name": "@lihkin/env-tools",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "A sample typescript repository configured with husky, prettier, eslint, commitlint and jest",
+  "description": "A node.js module with some tools to validate env specific files of your project",
   "keywords": [
-    "sample",
-    "keyword"
+    "env",
+    "dotenv",
+    "tools"
   ],
-  "author": "Nikhil Supekar (https://www.linkedin.com/in/nikhil-supekar/)",
-  "homepage": "https://github.com/supekarnikhil/type-lint-test-template#readme",
+  "author": "Nikhil Supekar (https://github.com/supekarnikhil/)",
+  "homepage": "https://github.com/supekarnikhil/env-tools#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/supekarnikhil/type-lint-test-template.git"
+    "url": "git+https://github.com/supekarnikhil/env-tools.git"
   },
   "bugs": {
-    "url": "https://github.com/supekarnikhil/type-lint-test-template/issues"
+    "url": "https://github.com/supekarnikhil/env-tools/issues"
+  },
+  "bin": {
+    "env-tools": "./dist/bin/index.js"
   },
   "scripts": {
+    "build": "tsc",
     "test": "jest --passWithNoTests",
     "format": "prettier --write '**/*.{js,ts,md*}'",
     "lint": "eslint --fix '**/*.{js,ts}'",
@@ -25,6 +30,9 @@
   "lint-staged": {
     "*.{ts,js,md*}": "prettier --write",
     "*.{ts,js}": "eslint --fix"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
@@ -37,10 +45,11 @@
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^27.1.6",
+    "eslint-plugin-jest": "^27.1.7",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.4",
+    "module-alias": "^2.2.2",
     "prettier": "^2.8.0",
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.3"
