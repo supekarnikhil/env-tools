@@ -94,7 +94,7 @@ The options specified here precede the default configurations.
 }
 ```
 
-```
+```bash
 npx env-tools --config-path=env-config.json
 ```
 
