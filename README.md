@@ -28,27 +28,27 @@ Or installing with yarn? `yarn add --dev @nixup/env-tools`
   then you can execute this tool with npx
 
 ```
-npx @nixup/env-tools
+npx env-tools
 ```
 
 - Example 2:
   you can specify different env and schema file path
 
 ```
-npx @nixup/env-tools -e ./src.env.local -s ./src/.env.schema
+npx env-tools -e ./src.env.local -s ./src/.env.schema
 ```
 
 - Example 3:
   run in quiet mode, it will only throw error if any missing keys found or exits without any error or warning
 
 ```
-npx @nixup/env-tools -q
+npx env-tools -q
 ```
 
 You can also add this to prebuild script in package.json
 
 ```
-prebuild: @nixup/env-tools -q
+prebuild: env-tools -q
 ```
 
 ## Default configuration
@@ -85,7 +85,7 @@ The options specified in here precedes the default configurations.
 ```
 
 ```
-npx @nixup/env-tools --config-path=env-config.json
+npx env-tools --config-path=env-config.json
 ```
 
 2. `-e` or `--env-path`: you can give the location of the env file and override the path specified in the default configuration.
