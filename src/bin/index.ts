@@ -29,7 +29,7 @@ program
   .option("-c, --config-path <string>", "default config file path")
   .option("-e, --env-path <string>", "target env file path")
   .option("-s, --schema-path <string>", "env schema file path")
-  .option("-q, --quiet", "exit with error if any")
+  .option("-q, --quiet", "exit with an error if any")
   .parse();
 
 const options = program.opts();

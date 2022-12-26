@@ -4,11 +4,11 @@ A node.js module with some tools to validate env specific file of your project.
 
 This tool compares your env file with your schema file.
 
-If any missing keys found, then it throws error on console and requests you to enter the respective missing values.
+If any missing keys are found, then it throws an error on the console and requests you to enter the respective missing values.
 This can be disabled with `-q` or `--quiet` option.
 
 If any additional key is found in the env file which is not specified in the schema file,
-then only a warning will be shown on the console, if quiet option is not set.
+then only a warning will be shown on the console if the quiet option is not set.
 
 ## Install
 
@@ -24,40 +24,41 @@ Or installing with yarn? `yarn add --dev @nixup/env-tools`
 
 - Example 1:
   If you have `.env.schema` file in the current working directory,
-  and you want to check whether all the keys specified in the schema file are there in the .env file or not,
-  then you can execute this tool with npx
+  and you want to check whether all the keys specified in the schema file are there in the .env file or not.
 
-`sample .env.schema` file
+sample `.env.schema` file
 
-```json
+```
 PUBLIC_KEY=
 PRIVATE_KEY=*
 ANOTHER_SECRETE_KEY=*
 WEBSITE_URL=
 ```
 
-```
+then with **npx** you can run
+
+```bash
 npx env-tools
 ```
 
 - Example 2:
-  you can specify different env and schema file path
+  run in quiet mode, it will only throw an error if any missing keys are found or exit without any error or warning
 
-```
-npx env-tools -e ./src.env.local -s ./src/.env.schema
-```
-
-- Example 3:
-  run in quiet mode, it will only throw error if any missing keys found or exits without any error or warning
-
-```
+```bash
 npx env-tools -q
 ```
 
-You can also add this to prebuild script in package.json
+You can also add this to prebuild script in your package.json, so that it will execute every time before the build script is executed.
 
 ```
 prebuild: env-tools -q
+```
+
+- Example 3:
+  you can specify different env and schema file path
+
+```bash
+npx env-tools -e ./src.env.local -s ./src/.env.schema
 ```
 
 ## Default configuration
@@ -70,18 +71,18 @@ prebuild: env-tools -q
 }
 ```
 
-## Available command arguements
+## Available command arguments
 
-The options specified in here precedes the default configurations.
+The options specified here precede the default configurations.
 
 ```
 -c, --config-path <string>", "default config file path"
 -e, --env-path <string>", "target env file path"
 -s, --schema-path <string>", "env schema file path"
--q, --quiet", "exit with error if any"
+-q, --quiet", "exit with an error if any"
 ```
 
-1. `-c` or `--config-path`: provide alternative configuration file path. This will only override the above default configuration.
+1. `-c` or `--config-path`: provide an alternative configuration file path. This will only override the above default configuration.
    ex. you can only override envFilePath and envSchemaFilePath in your configuration.
 
 `env-config.json`
