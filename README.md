@@ -27,6 +27,15 @@ Or installing with yarn? `yarn add --dev @nixup/env-tools`
   and you want to check whether all the keys specified in the schema file are there in the .env file or not,
   then you can execute this tool with npx
 
+`sample .env.schema` file
+
+```json
+PUBLIC_KEY=
+PRIVATE_KEY=*
+ANOTHER_SECRETE_KEY=*
+WEBSITE_URL=
+```
+
 ```
 npx env-tools
 ```
