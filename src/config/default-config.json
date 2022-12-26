@@ -1,0 +1,5 @@
+{
+    "envFilePath": "./.env",
+    "envSchemaFilePath": "./.env.schema",
+    "charEncoding": "utf8"
+}
