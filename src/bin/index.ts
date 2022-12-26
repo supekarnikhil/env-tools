@@ -61,7 +61,7 @@ if (!isQuietMode && extraKeysInDotEnv.length) {
     CONSOLE_TEXT_COLORS.yellow,
     `Warn: Extra config ${extraKeysInDotEnv.join(
       ", "
-    )} found. Please consider updating the ${configManager.getEnvSchemaFilePath()} file`,
+    )} found. Please consider updating the ${configManager.getEnvSchemaFilePath()} file.`,
     CONSOLE_TEXT_COLORS.reset
   );
 }
@@ -70,12 +70,14 @@ if (missingKeysInDotEnv.length) {
   console.error(
     CONSOLE_TEXT_COLORS.red,
     `Error: Missing config keys detected.\n${missingKeysInDotEnv.join(", ")}
-    \nPlease provide the required values for the respective keys\n`,
+    \nPlease provide the required values for the respective keys.\n`,
     CONSOLE_TEXT_COLORS.reset
   );
-}
 
-if (!isQuietMode) {
+  if (isQuietMode) {
+    process.exit(1);
+  }
+
   InputRequester(missingKeysInDotEnv, secreteKeys)
     .then((result: QuestionAnswer[]) => {
       const dotEnvData = DotEnvBuilder(result);
