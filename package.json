@@ -1,8 +1,8 @@
 {
-  "name": "@lihkin/env-tools",
+  "name": "@nixup/env-tools",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "A node.js module with some tools to validate env specific files of your project",
+  "description": "A node.js module with some tools to validate env specific file of your project",
   "keywords": [
     "env",
     "dotenv",
