@@ -1,6 +1,6 @@
 {
   "name": "@nixup/env-tools",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "description": "A node.js module with some tools to validate env specific file of your project",
   "keywords": [
@@ -30,7 +30,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -b",
     "test": "jest --passWithNoTests",
     "format": "prettier --write '**/*.{js,ts,md*}'",
     "lint": "eslint --fix '**/*.{js,ts}'",
