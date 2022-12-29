@@ -1,9 +1,6 @@
 import readline from "readline";
 
-interface QuestionAnswer {
-  question: string;
-  answer: string | unknown;
-}
+import { QuestionAnswer } from "./QuestionAnswer";
 
 const ask = (question: string, isSecrete: boolean) =>
   new Promise((resolve) => {
@@ -49,4 +46,4 @@ const InputRequester = async (questions: string[], hiddenInputQuestionKeys: stri
   return questionAnswers;
 };
 
-export { InputRequester, QuestionAnswer };
+export { InputRequester };

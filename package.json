@@ -6,7 +6,11 @@
   "keywords": [
     "env",
     "dotenv",
-    "tools"
+    "config",
+    "tools",
+    "settings",
+    "environment",
+    "variables"
   ],
   "author": "Nikhil Supekar (https://github.com/supekarnikhil/)",
   "homepage": "https://github.com/supekarnikhil/env-tools#readme",
@@ -17,6 +21,8 @@
   "bugs": {
     "url": "https://github.com/supekarnikhil/env-tools/issues"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "bin": {
     "env-tools": "./dist/bin/index.js"
   },

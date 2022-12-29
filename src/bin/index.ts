@@ -2,7 +2,7 @@
 import { Command } from "commander";
 import { ConfigManager } from "../lib/ConfigManager";
 import { DotEnvComparator } from "../lib/DotEnvComparator";
-import { InputRequester, QuestionAnswer } from "../lib/InputRequester";
+import { InputRequester } from "../lib/InputRequester";
 import { DotEnvBuilder } from "../lib/DotEnvBuilder";
 import { appendFile } from "../lib/FileManager";
 
@@ -74,7 +74,7 @@ if (missingKeysInDotEnv.length) {
   }
 
   InputRequester(missingKeysInDotEnv, secreteKeys)
-    .then((result: QuestionAnswer[]) => {
+    .then((result) => {
       const dotEnvData = DotEnvBuilder(result);
 
       appendFile(configManager.getEnvFilePath(), dotEnvData);
