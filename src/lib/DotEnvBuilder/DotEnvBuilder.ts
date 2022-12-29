@@ -1,4 +1,4 @@
-import { QuestionAnswer } from "@root/lib/InputRequester";
+import { QuestionAnswer } from "../InputRequester";
 
 const DotEnvBuilder = (questionAnswers: QuestionAnswer[]) =>
   questionAnswers

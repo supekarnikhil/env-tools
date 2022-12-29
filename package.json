@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "commander": "^9.4.1",
-    "module-alias": "^2.2.2",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {

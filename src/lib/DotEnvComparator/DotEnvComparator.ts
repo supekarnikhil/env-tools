@@ -1,4 +1,4 @@
-import { DotEnvFileLoader } from "@root/lib/DotEnvFileLoader";
+import { DotEnvFileLoader } from "../DotEnvFileLoader";
 
 const getEnvFileKeys = (envFilePath: string) => Object.keys(DotEnvFileLoader(envFilePath));
 

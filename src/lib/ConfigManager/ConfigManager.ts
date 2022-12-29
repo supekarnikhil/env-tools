@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import defaultConfig from "@root/config/default-config.json";
+import defaultConfig from "../../config/default-config.json";
 
 type ConfigJson = {
   envFilePath: string;

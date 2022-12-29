@@ -1,5 +1,5 @@
-import { DotEnvParser } from "@root/lib/DotEnvParser";
-import { readFile } from "@root/lib/FileManager";
+import { DotEnvParser } from "../DotEnvParser";
+import { readFile } from "../FileManager";
 
 function DotEnvFileLoader(FilePath: string, charEncoding: BufferEncoding = "utf-8") {
   try {

@@ -1,15 +1,10 @@
 #!/usr/bin/env node
-/* eslint-disable import/first, no-console */
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-require("module-alias").addAlias("@root", `${__dirname}/..`);
-
 import { Command } from "commander";
-import { ConfigManager } from "@root/lib/ConfigManager";
-import { DotEnvComparator } from "@root/lib/DotEnvComparator";
-import { InputRequester, QuestionAnswer } from "@root/lib/InputRequester";
-import { DotEnvBuilder } from "@root/lib/DotEnvBuilder";
-import { appendFile } from "@root/lib/FileManager";
+import { ConfigManager } from "../lib/ConfigManager";
+import { DotEnvComparator } from "../lib/DotEnvComparator";
+import { InputRequester, QuestionAnswer } from "../lib/InputRequester";
+import { DotEnvBuilder } from "../lib/DotEnvBuilder";
+import { appendFile } from "../lib/FileManager";
 
 const CONSOLE_TEXT_COLORS = {
   red: "\x1b[31m%s\x1b[0m",
