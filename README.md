@@ -79,7 +79,7 @@ The options specified here precede the default configurations.
 -c, --config-path <string>", "default config file path"
 -e, --env-path <string>", "target env file path"
 -s, --schema-path <string>", "env schema file path"
--q, --quiet", "exit with an error if any"
+-q, --quiet", "exit with an error if there is any error or warning"
 ```
 
 1. `-c` or `--config-path`: provide an alternative configuration file path. This will only override the above default configuration.
@@ -102,4 +102,4 @@ npx env-tools --config-path=env-config.json
 
 3. `-s` or `--schema-path`: you can give the location of the env-schema file and override the path specified in the default configuration.
 
-4. `-q` or `--quiet`: if you specify this option, then you will not be asked
+4. `-q` or `--quiet`: if you specify this option and there are missing or extra keys, the tool will exit with error code 1. And it will not ask for missing keys.

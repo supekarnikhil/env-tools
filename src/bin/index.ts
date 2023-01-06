@@ -24,7 +24,7 @@ program
   .option("-c, --config-path <string>", "default config file path")
   .option("-e, --env-path <string>", "target env file path")
   .option("-s, --schema-path <string>", "env schema file path")
-  .option("-q, --quiet", "exit with an error if any")
+  .option("-q, --quiet", "exit with an error if there is any error or warning")
   .parse();
 
 const options = program.opts();
@@ -51,20 +51,24 @@ const { missingKeysInDotEnv, extraKeysInDotEnv, secreteKeys } = DotEnvComparator
 
 const isQuietMode = configManager.getIsQuietMode();
 
-if (!isQuietMode && extraKeysInDotEnv.length) {
+if (extraKeysInDotEnv.length) {
   console.warn(
     CONSOLE_TEXT_COLORS.yellow,
-    `Warn: Extra config ${extraKeysInDotEnv.join(
+    `Warning: Extra config keys found.\n${extraKeysInDotEnv.join(
       ", "
-    )} found. Please consider updating the ${configManager.getEnvSchemaFilePath()} file.`,
+    )}\nPlease update ${configManager.getEnvSchemaFilePath()} file.\n`,
     CONSOLE_TEXT_COLORS.reset
   );
+
+  if (isQuietMode) {
+    process.exit(1);
+  }
 }
 
 if (missingKeysInDotEnv.length) {
   console.error(
     CONSOLE_TEXT_COLORS.red,
-    `Error: Missing config keys detected.\n${missingKeysInDotEnv.join(", ")}
+    `Error: Missing config keys found.\n${missingKeysInDotEnv.join(", ")}
     \nPlease provide the required values for the respective keys.\n`,
     CONSOLE_TEXT_COLORS.reset
   );
