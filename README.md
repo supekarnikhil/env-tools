@@ -71,6 +71,10 @@ npx env-tools -e ./src.env.local -s ./src/.env.schema
 }
 ```
 
+You can override these settings by adding the file `env-config.json` in the same directory from where you are going to run the env-tool command. Or you can also provide a custom configuration file path with `-c` option.
+
+`env-config.json` take precedence over the default configuration and if custom config file path is also provided with option `-c`, then that configuration will take precedence over the other configurations.
+
 ## Available command arguments
 
 The options specified here precede the default configurations.

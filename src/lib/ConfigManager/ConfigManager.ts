@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import defaultConfig from "../../config/default-config.json";
 
+const customConfigFileDefaultPath = `${process.cwd()}/env-config.json`;
+
 type ConfigJson = {
   envFilePath: string;
   envSchemaFilePath: string;
@@ -23,6 +25,9 @@ export class ConfigManager {
     if (typeof customConfigFilePath === "string" && fs.existsSync(customConfigFilePath)) {
       // eslint-disable-next-line global-require, import/no-dynamic-require, @typescript-eslint/no-unsafe-assignment
       this.configJson = { ...defaultConfig, ...require(path.resolve(customConfigFilePath)) };
+    } else if (fs.existsSync(customConfigFileDefaultPath)) {
+      // eslint-disable-next-line global-require, import/no-dynamic-require, @typescript-eslint/no-unsafe-assignment
+      this.configJson = { ...defaultConfig, ...require(path.resolve(customConfigFileDefaultPath)) };
     }
 
     const { charEncoding, envFilePath, envSchemaFilePath } = this.configJson;
