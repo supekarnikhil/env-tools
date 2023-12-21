@@ -4,8 +4,9 @@ import { ConfigManager } from "../lib/ConfigManager";
 import { DotEnvComparator } from "../lib/DotEnvComparator";
 import { InputRequester } from "../lib/InputRequester";
 import { DotEnvBuilder } from "../lib/DotEnvBuilder";
-import { appendFile } from "../lib/FileManager";
+import { appendFile, fileExists } from "../lib/FileManager";
 
+let isErrorFound = false;
 const CONSOLE_TEXT_COLORS = {
   red: "\x1b[31m%s\x1b[0m",
   yellow: "\x1b[33m%s\x1b[0m",
@@ -21,10 +22,16 @@ const { version, name, description } = require("../../package.json");
 program.name(name).description(description).version(version);
 
 program
-  .option("-c, --config-path <string>", "default config file path")
-  .option("-e, --env-path <string>", "target env file path")
-  .option("-s, --schema-path <string>", "env schema file path")
-  .option("-q, --quiet", "exit with an error if there is any error or warning")
+  .option(
+    "-c, --config-path <string>",
+    "Provide an alternative configuration file path to override default configuration options."
+  )
+  .option("-e, --env-path <string>", "Specify a custom path to the env file.")
+  .option("-s, --schema-path <string>", "Specify a custom path to the env schema file.")
+  .option(
+    "-q, --quiet",
+    "Exit with an error if missing or extra keys are found, without prompting for missing values."
+  )
   .parse();
 
 const options = program.opts();
@@ -44,17 +51,39 @@ if (typeof quiet === "boolean") {
   configManager.setIsQuietMode(quiet);
 }
 
+const envFilePath = configManager.getEnvFilePath();
+const envSchemaFilePath = configManager.getEnvSchemaFilePath();
+
+if (!fileExists(envFilePath)) {
+  isErrorFound = true;
+  console.warn(
+    CONSOLE_TEXT_COLORS.yellow,
+    `Warning: file ${envFilePath} does not exist.\n`,
+    CONSOLE_TEXT_COLORS.reset
+  );
+}
+
+if (!fileExists(envSchemaFilePath)) {
+  isErrorFound = true;
+  console.warn(
+    CONSOLE_TEXT_COLORS.yellow,
+    `Warning: file ${envSchemaFilePath} does not exist.\n`,
+    CONSOLE_TEXT_COLORS.reset
+  );
+}
+
 const { missingKeysInDotEnv, extraKeysInDotEnv, secreteKeys } = DotEnvComparator(
-  configManager.getEnvFilePath(),
-  configManager.getEnvSchemaFilePath()
+  envFilePath,
+  envSchemaFilePath
 );
 
 const isQuietMode = configManager.getIsQuietMode();
 
 if (extraKeysInDotEnv.length) {
+  isErrorFound = true;
   console.warn(
     CONSOLE_TEXT_COLORS.yellow,
-    `Warning: Extra config keys found.\n${extraKeysInDotEnv.join(
+    `Warning: Following extra config keys found.\n${extraKeysInDotEnv.join(
       ", "
     )}\nPlease update ${configManager.getEnvSchemaFilePath()} file.\n`,
     CONSOLE_TEXT_COLORS.reset
@@ -66,9 +95,10 @@ if (extraKeysInDotEnv.length) {
 }
 
 if (missingKeysInDotEnv.length) {
+  isErrorFound = true;
   console.error(
     CONSOLE_TEXT_COLORS.red,
-    `Error: Missing config keys found.\n${missingKeysInDotEnv.join(", ")}
+    `Error: Following missing config keys found.\n${missingKeysInDotEnv.join(", ")}
     \nPlease provide the required values for the respective keys.\n`,
     CONSOLE_TEXT_COLORS.reset
   );
@@ -86,4 +116,8 @@ if (missingKeysInDotEnv.length) {
     .catch((e) => {
       console.log(e);
     });
+}
+
+if (!isErrorFound) {
+  console.log("\nNo error found!\n");
 }

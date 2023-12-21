@@ -80,10 +80,10 @@ You can override these settings by adding the file `env-config.json` in the same
 The options specified here precede the default configurations.
 
 ```
--c, --config-path <string>", "default config file path"
--e, --env-path <string>", "target env file path"
--s, --schema-path <string>", "env schema file path"
--q, --quiet", "exit with an error if there is any error or warning"
+-c or --config-path: Provide an alternative configuration file path to override default configuration options.
+-e or --env-path: Specify a custom path to the env file.
+-s or --schema-path: Specify a custom path to the env schema file.
+-q or --quiet: Exit with an error if missing or extra keys are found, without prompting for missing values.
 ```
 
 1. `-c` or `--config-path`: provide an alternative configuration file path. This will only override the above default configuration.
